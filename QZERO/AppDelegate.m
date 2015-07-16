@@ -7,16 +7,32 @@
 //
 
 #import "AppDelegate.h"
+#import "MBProgressHUD.h"
+#import "Reachability.h"
 
 @interface AppDelegate ()
+{
+    BOOL isInternet;
+}
 
 @end
 
 @implementation AppDelegate
-
++(AppDelegate *)Getdelegate
+{
+    return (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+}
+-(void)showIndicator{
+    [MBProgressHUD showHUDAddedTo:self.window animated: YES];
+}
+-(void)hideIndicator{
+    [MBProgressHUD hideHUDForView:self.window animated: YES];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     return YES;
 }
 
@@ -41,5 +57,22 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
+- (BOOL) connectedToNetwork{
+    Reachability* reachability = [Reachability reachabilityWithHostName:@"google.com"];
+    NetworkStatus remoteHostStatus = [reachability currentReachabilityStatus];
+    
+    if(remoteHostStatus == NotReachable)
+    {
+        isInternet =NO;
+    }
+    else if (remoteHostStatus == ReachableViaWWAN)
+    {
+        isInternet = TRUE;
+    }
+    else if (remoteHostStatus == ReachableViaWiFi)
+    { isInternet = TRUE;
+        
+    }
+    return isInternet;
+}
 @end

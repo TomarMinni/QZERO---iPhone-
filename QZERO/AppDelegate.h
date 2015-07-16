@@ -12,6 +12,9 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-
++(AppDelegate*)Getdelegate;
+- (void) showIndicator;
+- (void) hideIndicator;
+- (BOOL) connectedToNetwork;
 @end
 

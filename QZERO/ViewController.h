@@ -10,6 +10,12 @@
 
 @interface ViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIImageView *logoImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *girlBackGroundImageView;
+@property (strong, nonatomic) IBOutlet UIButton *SearchButton;
+@property (strong, nonatomic) IBOutlet UIButton *LoginButton;
+@property (strong, nonatomic) IBOutlet UIButton *SearchDropDown;
+@property (strong, nonatomic) IBOutlet UIButton *LoginDropDown;
 
 @end
 
